@@ -248,7 +248,12 @@ PRODUCT_COPY_FILES += \
 # sensors
 PRODUCT_COPY_FILES += \
     device/huawei/u8800/system/lib/hw/lights.msm7k.so:/system/lib/hw/lights.msm7k.so \
+    device/huawei/u8800/system/lib/libloc.so:/system/lib/libloc.so \
+    device/huawei/u8800/system/lib/libloc_api.so:/system/lib/libloc_api.so \
+    device/huawei/u8800/system/lib/libloc_ext.so:/system/lib/libloc_ext.so \
+    device/huawei/u8800/system/lib/libloc-rpc.so:/system/lib/libloc-rpc.so \
 #    device/huawei/u8800/system/lib/hw/sensors.default.so:/system/lib/hw/sensors.default.so \
+    
 
 PRODUCT_PROPERTY_OVERRIDES := \
     keyguard.no_require_sim=true \
