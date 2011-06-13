@@ -52,7 +52,6 @@ PRODUCT_PACKAGES += \
     gralloc.msm7x30 \
     overlay.default \
     gps.u8800 \
-    sensors.u8800 \
     libOmxCore \
     libOmxVenc \
     libOmxVdec
@@ -252,7 +251,7 @@ PRODUCT_COPY_FILES += \
     device/huawei/u8800/system/lib/libloc_api.so:/system/lib/libloc_api.so \
     device/huawei/u8800/system/lib/libloc_ext.so:/system/lib/libloc_ext.so \
     device/huawei/u8800/system/lib/libloc-rpc.so:/system/lib/libloc-rpc.so \
-#    device/huawei/u8800/system/lib/hw/sensors.default.so:/system/lib/hw/sensors.default.so \
+    device/huawei/u8800/system/lib/hw/sensors.default.so:/system/lib/hw/sensors.default.so \
     
 
 PRODUCT_PROPERTY_OVERRIDES := \
