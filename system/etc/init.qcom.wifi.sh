@@ -42,8 +42,8 @@ case "$wifishd" in
        ;;
      *)
        sh /system/etc/init.qcom.sdio.sh 1
-       insmod /wifi/librasdioif.ko
-       insmod /wifi/libra.ko
+       insmod /system/wifi/librasdioif.ko
+       insmod /system/wifi/libra.ko
        rmmod libra.ko
        rmmod librasdioif.ko
        sh /system/etc/init.qcom.sdio.sh 0

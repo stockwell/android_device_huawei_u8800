@@ -26,8 +26,6 @@ LOCAL_PATH:= $(call my-dir)
 # inherit from the proprietary version
 -include vendor/huawei/u8800/BoardConfigVendor.mk
 
-#TARGET_SPECIFIC_HEADER_PATH := device/htc/msm7x30-common/include
-
 # huawei U8800 platfrom
 TARGET_BOARD_PLATFORM := msm7x30
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
@@ -38,15 +36,14 @@ TARGET_NO_BOOTLOADER := true
 BOARD_USES_QCOM_HARDWARE := true
 TARGET_BOOTLOADER_BOARD_NAME := u8800
 ARCH_ARM_HAVE_TLS_REGISTER := true
-# \\use old libsensors
 TARGET_USES_OLD_LIBSENSORS_HAL := true
 
 
 # Camera
-#USE_CAMERA_STUB := true
+USE_CAMERA_STUB := true
 BOARD_CAMERA_USE_GETBUFFERINFO := true
-BOARD_USE_FROYO_LIBCAMERA := true
-
+#BOARD_USE_FROYO_LIBCAMERA := true
+#BOARD_USE_CAF_LIBCAMERA := true
 
 # Graphics
 TARGET_LIBAGL_USE_GRALLOC_COPYBITS := true
@@ -57,18 +54,19 @@ BOARD_EGL_CFG := device/huawei/u8800/system/lib/egl/egl.cfg
 
 # Audio
 BOARD_USES_GENERIC_AUDIO := false
-#BOARD_PREBUILT_LIBAUDIO := true  \\build libaudio.so from source, fix no boot
+BOARD_PREBUILT_LIBAUDIO := true
 
 
 # kernel
-BOARD_KERNEL_CMDLINE := console=ttyDCC0 androidboot.hardware=u8800 g_android.product_id=0x1038 g_android.serial_number=U8800-Geno
+BOARD_KERNEL_CMDLINE := console=ttyDCC0 androidboot.hardware=u8800 g_android.product_id=0x1038 g_android.serial_number=U8800
 BOARD_KERNEL_BASE := 0x00200000
 BOARD_KERNEL_PAGE_SIZE := 4096
 
 #bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
-
+# use CAF bluetooth audio
+BOARD_HAVE_CAF_BLUETOOTH := true
 
 BOARD_VENDOR_QCOM_AMSS_VERSION := 1200
 
@@ -76,7 +74,7 @@ BOARD_USES_QCOM_LIBS := true
 BOARD_USES_QCOM_LIBRPC := true
 BOARD_USES_QCOM_GPS := true
 BOARD_USE_QCOM_PMEM := true
-#BOARD_GPS_LIBRARIES := libloc_api
+BOARD_GPS_LIBRARIES := libloc_api
 
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := u8800
 BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 1240
@@ -90,45 +88,42 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 
 TARGET_PREBUILT_KERNEL := device/huawei/u8800/kernel
 
-
-
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
-WPA_SUPPLICANT_VERSION      := VER_0_6_X
-BOARD_WLAN_DEVICE           := libra
-WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/libra.ko"
-#The next 3 lines need replacing with appropriate firmware paths for the libra wifi chip used in the U8800.
-#Using bcm4329 is wrong and is the reason WiFi doesn't work.
-#WIFI_DRIVER_FW_STA_PATH     := "/vendor/firmware/fw_bcm4329.bin" 
-#WIFI_DRIVER_FW_AP_PATH      := "/vendor/firmware/fw_bcm4329_apsta.bin"
-#WIFI_DRIVER_MODULE_ARG      := "firmware_path=/vendor/firmware/fw_bcm4329.bin nvram_path=/proc/calibration"
-WIFI_DRIVER_MODULE_NAME     := "libra"
+WPA_SUPPLICANT_VERSION := VER_0_6_X
+BOARD_WLAN_DEVICE := libra
+WIFI_DRIVER_MODULE_PATH := "/system/wifi/libra.ko"
+WIFI_DRIVER_MODULE_NAME := "libra"
+WIFI_SDIO_IF_DRIVER_MODULE_PATH := "/system/wifi/librasdioif.ko"
+WIFI_SDIO_IF_DRIVER_MODULE_NAME := "librasdioif"
+
 
 # SDCard
 BOARD_USE_USB_MASS_STORAGE_SWITCH := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun
 BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
-#BOARD_UMS_LUNFILE2 := "/sys/devices/platform/msm_hsusb/gadget/lun2/file"
+
 
 # Filesystem
 BOARD_DATA_DEVICE := /dev/block/mmcblk0p13
-BOARD_DATA_FILESYSTEM := ext3
+BOARD_DATA_FILESYSTEM := ext4
 BOARD_CACHE_DEVICE := /dev/block/mmcblk0p6
-BOARD_CACHE_FILESYSTEM := ext3
+BOARD_CACHE_FILESYSTEM := ext4
 BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk1p1
 BOARD_SDCARD_DEVICE_SECONDARY := /dev/block/mmcblk1p2
 BOARD_SDCARD_DEVICE_INTERNAL := /dev/block/mmcblk0p14
 BOARD_SDEXT_DEVICE := /dev/block/mmcblk1p2
-BOARD_SYSTEM_FILESYSTEM := ext3
+BOARD_SYSTEM_FILESYSTEM := ext4
 BOARD_SYSTEM_DEVICE := /dev/block/mmcblk0p12
 BOARD_HAS_NO_MISC_PARTITION := true
 
 
 # recovery
+BOARD_HAS_FB_RGBA8888 :=true
 BOARD_HAS_LARGE_FILESYSTEM := true
-#BOARD_USES_RECOVERY_CHARGEMODE := true
 BOARD_USES_MMCUTILS := true
-BOARD_USES_RECOVERY_CHINESE := true
+BOARD_USES_RECOVERY_CHINESE := false
+TARGET_PREBUILT_RECOVERY_KERNEL := device/huawei/u8800/recovery_kernel
 ifeq ($(BOARD_USES_RECOVERY_CHINESE),true)
 BOARD_CUSTOM_RECOVERY_KEYMAPPING:= ../../device/huawei/u8800/recovery/recovery_ui_cn.c
 else

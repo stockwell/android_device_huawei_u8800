@@ -194,9 +194,9 @@ PRODUCT_COPY_FILES += \
     device/huawei/u8800/system/lib/libhwrpc.so:/system/lib/libhwrpc.so \
 
 # security
-PRODUCT_COPY_FILES += \
-    device/huawei/u8800/system/etc/security/otacerts.zip:/system/etc/security/otacerts.zip \
-    device/huawei/u8800/system/etc/security/cacerts.bks:/system/etc/security/cacerts.bks
+#PRODUCT_COPY_FILES += \
+#    device/huawei/u8800/system/etc/security/otacerts.zip:/system/etc/security/otacerts.zip \
+#    device/huawei/u8800/system/etc/security/cacerts.bks:/system/etc/security/cacerts.bks
 
 # init bin
 PRODUCT_COPY_FILES += \
@@ -236,8 +236,8 @@ PRODUCT_COPY_FILES += \
     device/huawei/u8800/system/lib/libaudioalsa.so:/system/lib/libaudioalsa.so \
     device/huawei/u8800/system/lib/libaudioeq.so:/system/lib/libaudioeq.so \
     device/huawei/u8800/system/lib/libaudioalsa.so:/obj/lib/libaudioalsa.so \
-#    device/huawei/u8800/system/lib/libaudio.so:/system/lib/libaudio.so \
-#    device/huawei/u8800/system/lib/libaudio.so:/obj/lib/libaudio.so \
+    device/huawei/u8800/system/lib/libaudio.so:/system/lib/libaudio.so \
+    device/huawei/u8800/system/lib/libaudio.so:/obj/lib/libaudio.so \
 
 #system patch
 PRODUCT_COPY_FILES += \
@@ -252,7 +252,13 @@ PRODUCT_COPY_FILES += \
     device/huawei/u8800/system/lib/libloc_ext.so:/system/lib/libloc_ext.so \
     device/huawei/u8800/system/lib/libloc-rpc.so:/system/lib/libloc-rpc.so \
     device/huawei/u8800/system/lib/hw/sensors.default.so:/system/lib/hw/sensors.default.so \
-    
+
+# wifi
+PRODUCT_COPY_FILES += \
+    device/huawei/u8800/system/wifi/libra.ko:/system/wifi/libra.ko \
+    device/huawei/u8800/system/wifi/librasdioif.ko:/system/wifi/librasdioif.ko \
+    device/huawei/u8800/system/bin/wpa_supplicant:/system/bin/wpa_supplicant \
+    device/huawei/u8800/system/bin/wpa_cli:/system/bin/wpa_cli \
 
 PRODUCT_PROPERTY_OVERRIDES := \
     keyguard.no_require_sim=true \

@@ -19,7 +19,7 @@ on fs
     mount ext3 /dev/block/mmcblk0p13 /data nosuid nodev data=ordered
     exec /system/bin/e2fsck -p /dev/block/mmcblk0p6
     mount ext3 /dev/block/mmcblk0p6 /cache nosuid nodev data=ordered
-
+    write /proc/init_panic_virt_flash 1
 on post-fs
     mkdir /data/drm 0777 root root
     chown root root /data/drm
@@ -31,6 +31,10 @@ on post-fs
     mkdir /data/hwvefs 0777 root root
     chown root root /data/hwvefs
     chmod 0777 /data/hwvefs
+    copy /proc/modem_panic /data/dontpanic/modem_panic
+    chown root log /data/dontpanic/modem_panic
+    chmod 0640 /data/dontpanic/modem_panic
+    
 # end from init.rc
 
 on boot
@@ -49,6 +53,7 @@ on boot
     chmod 0666 /dev/graphics/fb1
     chmod 0666 /dev/compass_aot
     chmod 0666 /dev/compass_dev
+    chmod 666 /dev/input/event1
 # end from init.rc
 
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
@@ -80,19 +85,6 @@ on boot
     mkdir /etc/wiper 0777 location qcom_oncrpc
 
     mkdir /data/bugreports
-
-# SD card polling
-    chown system system /sys/module/g_android/parameters/product_id
-    chown system system /sys/devices/platform/msm_sdcc.2/polling
-    chown system system /sys/devices/platform/msm_sdcc.3/polling
-    chown system system /sys/devices/platform/msm_sdcc.4/polling
-    chown system system /sys/devices/platform/android_usb/composition
-    chown system system /sys/devices/platform/android_usb/remote_wakeup
-
-
-# Enable MASS storage on SDCARD
-    write /sys/devices/platform/msm_hsusb/gadget/lun0/file /dev/block/mmcblk1p1 
-    write /sys/bus/platform/drivers/msm_sdcc/msm_sdcc.4/polling 1
 
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
@@ -208,4 +200,5 @@ service applogcat /system/bin/logcat -v time -r 1024 -n 8 -f /data/bugreports/ap
 
 service kmsglogcat /system/bin/kmsgcat -r 1024 -n 8 -f /data/bugreports/kmsgcat-log
     disabled
+
 
