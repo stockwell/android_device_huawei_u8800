@@ -13,4 +13,4 @@
 # limitations under the License.
 # 
 
-include $(call all-named-subdir-makefiles, bluez, wifi)
+include $(call all-named-subdir-makefiles, bluez wifi)
