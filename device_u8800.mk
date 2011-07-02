@@ -13,12 +13,10 @@ PRODUCT_NAME := huawei_u8800
 PRODUCT_DEVICE := u8800
 PRODUCT_MODEL := huawei u8800
 PRODUCT_MANUFACTURER := huawei
-PRODUCT_LOCALES := zh_CN zh_TW en_US
+#PRODUCT_LOCALES := zh_CN zh_TW en_US
 
 TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel
 
-#PRODUCT_COPY_FILES += \
-#    device/huawei/u8800/gps.conf:/system/etc/gps.conf
 
 PRODUCT_COPY_FILES += \
     device/huawei/u8800/init.u8800.rc:root/init.u8800.rc \
@@ -34,7 +32,9 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.location.gps.xml:/system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/base/data/etc/android.hardware.wifi.xml:/system/etc/permissions/android.hardware.wifi.xml \
     frameworks/base/data/etc/android.hardware.sensor.proximity.xml:/system/etc/permissions/android.hardware.sensor.proximity.xml \
+    frameworks/base/data/etc/android.hardware.sensor.compass.xml:/system/etc/permissions/android.hardware.sensor.compass.xml \
     frameworks/base/data/etc/android.hardware.sensor.light.xml:/system/etc/permissions/android.hardware.sensor.light.xml \
+    frameworks/base/data/etc/android.hardware.sensor.accelerometer.xml:/system/etc/permissions/android.hardware.sensor.accelerometer.xml \
     frameworks/base/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:/system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
     frameworks/base/data/etc/android.hardware.telephony.gsm.xml:/system/etc/permissions/android.hardware.telephony.gsm.xml
 
@@ -51,10 +51,11 @@ PRODUCT_PACKAGES += \
     librs_jni \
     gralloc.msm7x30 \
     overlay.default \
+    lights.msm7x30 \
     gps.u8800 \
     libOmxCore \
     libOmxVenc \
-    libOmxVdec
+    libOmxVdec \
 
 # Firmware
 PRODUCT_COPY_FILES += \
@@ -119,7 +120,8 @@ PRODUCT_COPY_FILES += \
     device/huawei/u8800/system/lib/libomx_avcdec_sharedlibrary.so:/system/lib/libomx_avcdec_sharedlibrary.so \
     device/huawei/u8800/system/lib/libomx_m4vdec_sharedlibrary.so:/system/lib/libomx_m4vdec_sharedlibrary.so \
     device/huawei/u8800/system/lib/libomx_mp3dec_sharedlibrary.so:/system/lib/libomx_mp3dec_sharedlibrary.so \
-    device/huawei/u8800/system/lib/libomx_sharedlibrary.so:/system/lib/libomx_sharedlibrary.so
+    device/huawei/u8800/system/lib/libomx_sharedlibrary.so:/system/lib/libomx_sharedlibrary.so \
+    device/huawei/u8800/system/lib/libOmxCore.so:/system/lib/libOmxCore.so \
 
 # opencore
 PRODUCT_COPY_FILES += \
@@ -193,11 +195,6 @@ PRODUCT_COPY_FILES += \
     device/huawei/u8800/system/lib/libicudata.so:/system/lib/libicudata.so \
     device/huawei/u8800/system/lib/libhwrpc.so:/system/lib/libhwrpc.so \
 
-# security
-#PRODUCT_COPY_FILES += \
-#    device/huawei/u8800/system/etc/security/otacerts.zip:/system/etc/security/otacerts.zip \
-#    device/huawei/u8800/system/etc/security/cacerts.bks:/system/etc/security/cacerts.bks
-
 # init bin
 PRODUCT_COPY_FILES += \
     device/huawei/u8800/system/bin/qmuxd:/system/bin/qmuxd \
@@ -239,19 +236,17 @@ PRODUCT_COPY_FILES += \
     device/huawei/u8800/system/lib/libaudio.so:/system/lib/libaudio.so \
     device/huawei/u8800/system/lib/libaudio.so:/obj/lib/libaudio.so \
 
-#system patch
-PRODUCT_COPY_FILES += \
-    device/huawei/u8800/system/app/RootExplorer.apk:/system/app/RootExplorer.apk \
-    device/huawei/u8800/system/app/SystemInfoPro.apk:/system/app/SystemInfoPro.apk \
-
 # sensors
 PRODUCT_COPY_FILES += \
-    device/huawei/u8800/system/lib/hw/lights.msm7k.so:/system/lib/hw/lights.msm7k.so \
     device/huawei/u8800/system/lib/libloc.so:/system/lib/libloc.so \
     device/huawei/u8800/system/lib/libloc_api.so:/system/lib/libloc_api.so \
     device/huawei/u8800/system/lib/libloc_ext.so:/system/lib/libloc_ext.so \
     device/huawei/u8800/system/lib/libloc-rpc.so:/system/lib/libloc-rpc.so \
     device/huawei/u8800/system/lib/hw/sensors.default.so:/system/lib/hw/sensors.default.so \
+
+# gralloc
+PRODUCT_COPY_FILES += \
+    device/huawei/u8800/system/lib/hw/gralloc.msm7x30.so:/system/lib/hw/gralloc.msm7x30.so \
 
 # wifi
 PRODUCT_COPY_FILES += \
