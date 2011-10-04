@@ -13,4 +13,15 @@
 # limitations under the License.
 # 
 
-include $(call all-named-subdir-makefiles, bluez )
+LOCAL_PATH := $(my-dir)
+
+ifeq ($(TARGET_DEVICE),u8800)
+    subdir_makefiles := \
+        $(LOCAL_PATH)/libaudio/Android.mk \
+        $(LOCAL_PATH)/liblights/Android.mk \
+        $(LOCAL_PATH)/libril/Android.mk \
+        $(LOCAL_PATH)/recovery/rmt_storage/Android.mk \
+        $(LOCAL_PATH)/recovery/offmode/Android.mk
+
+    include $(subdir_makefiles)
+endif

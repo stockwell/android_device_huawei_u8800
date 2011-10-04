@@ -5,26 +5,19 @@ $(call inherit-product, device/common/gps/gps_eu_supl.mk)
 
 DEVICE_PACKAGE_OVERLAYS := device/huawei/u8800/overlay
 
-
-
-
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_NAME := huawei_u8800
 PRODUCT_DEVICE := u8800
 PRODUCT_MODEL := huawei u8800
 PRODUCT_MANUFACTURER := huawei
-#PRODUCT_LOCALES := zh_CN zh_TW en_US
 
 TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel
-
 
 PRODUCT_COPY_FILES += \
     device/huawei/u8800/init.u8800.rc:root/init.u8800.rc \
     device/huawei/u8800/ueventd.u8800.rc:root/ueventd.u8800.rc
 
 $(call inherit-product-if-exists, vendor/huawei/u8800/u8800-vendor.mk)
-
-
 
 PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/handheld_core_hardware.xml:/system/etc/permissions/handheld_core_hardware.xml \
@@ -254,74 +247,6 @@ PRODUCT_COPY_FILES += \
     device/huawei/u8800/system/wifi/librasdioif.ko:/system/wifi/librasdioif.ko \
     device/huawei/u8800/system/bin/wpa_supplicant:/system/bin/wpa_supplicant \
     device/huawei/u8800/system/bin/wpa_cli:/system/bin/wpa_cli \
-
-PRODUCT_PROPERTY_OVERRIDES := \
-    keyguard.no_require_sim=true \
-    ro.com.android.dateformat=dd-MM-yyyy \
-    ro.build.baseband_version=129005 \
-    ro.telephony.default_network=0 \
-    ro.telephony.call_ring.multiple=false
-    ro.ril.hsxpa=1 \
-    ro.ril.gprsclass=10 \
-
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    rild.libpath=/system/lib/libril-qc-1.so \
-    rild.libargs=-d /dev/smd0 \
-    wifi.interface=wlan0 \
-    wifi.supplicant_scan_interval=15 \
-    ro.com.android.dataroaming=false
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sf.lcd_density=240 \
-    persist.sys.language=zh \
-    persist.sys.country=CN \
-    persist.sys.timezone=Asia/Shanghai
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.hwfeature_slavecamera=yes \
-    ro.config.hwcameraset=63 \
-    hw.secondary_mic=0 \
-    ro.config.hw_addsettingsdbex=1 \
-    ro.config.hw_gcf_mms=true \
-    ro.config.wifi_chip_is_bcm=true \
-    ro.config.hwft_PNN_function=true \
-    persist.cust.tel.adapt=1 \
-    persist.cust.tel.eons=1 \
-    ro.config.hwfeature_gps_test=0 \
-    ro.config.hwfeature_ecc=true \
-    ro.config.lowbattery_shutdown=1 \
-    ro.config.hwfeature_wakeupkey=1 \
-    ro.config.endkeybehavior=true \
-    ro.config.hw_menu_unlockscreen=false \
-    ro.media.enc.lprof.duration=30 \
-    ro.config.PicMaxSize=3mp \
-    ro.config.hw_temperature_warn=true \
-    ro.config.hw_clocksetting=0
-
-# u8800 uses high-density artwork where available
-PRODUCT_LOCALES += hdpi
-
-# we have enough storage space to hold precise GC data
-PRODUCT_TAGS += dalvik.gc.type-precise
-
-# This should not be needed but on-screen keyboard uses the wrong density without it.
-PRODUCT_PROPERTY_OVERRIDES += \
-    qemu.sf.lcd_density=240 
-
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.com.google.locationfeatures=1 \
-    ro.setupwizard.enable_bypass=1 \
-    ro.media.dec.jpeg.memcap=20000000 \
-    dalvik.vm.lockprof.threshold=500 \
-    dalvik.vm.dexopt-flags=m=y \
-    dalvik.vm.heapsize=32m \
-    dalvik.vm.execution-mode=int:jit \
-    dalvik.vm.dexopt-data-only=1 \
-    ro.opengles.version=131072  \
-    ro.compcache.default=0
-
 
 $(call inherit-product-if-exists, vendor/huawei/u8800/u8800-vendor.mk)
 
