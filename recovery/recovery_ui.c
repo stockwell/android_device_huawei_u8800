@@ -34,6 +34,7 @@ char* MENU_ITEMS[] = { "reboot system now",
                        NULL };
 
 int device_recovery_start() {
+    __system("echo '255' > /sys/devices/platform/pmic-leds/leds/button-backlight/brightness");
     return 0;
 }
 
