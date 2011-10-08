@@ -26,7 +26,7 @@ int get_chargemode() {
 	charge = strstr(buffer, "charge_flag");
 
 	if((int)charge[13] == 49 ){	
-		LOGE("Charge Flag: %c", charge[13]);
+		LOGI("Charge Flag: %c", charge[13]);
 		flag = 1;
     }
 
@@ -37,11 +37,11 @@ int main(void){
     int flag;
     flag = get_chargemode();
     if(flag){
-		LOGE("Huawei offmode charging\n");
+		LOGI("Huawei offmode charging\n");
 		property_set("ctl.start", "offmode_charge");
         property_set("ctl.stop", "recovery");
 	} else {
-        sleep(2); //Give cache and misc partitions time to come online
+        sleep(3); //Give cache and misc partitions time to come online
         property_set("ctl.start", "recovery");
     }
 	return 0;

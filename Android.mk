@@ -21,7 +21,8 @@ ifeq ($(TARGET_DEVICE),u8800)
         $(LOCAL_PATH)/liblights/Android.mk \
         $(LOCAL_PATH)/libril/Android.mk \
         $(LOCAL_PATH)/recovery/rmt_storage/Android.mk \
-        $(LOCAL_PATH)/recovery/offmode/Android.mk
+        $(LOCAL_PATH)/recovery/offmode/Android.mk \
+        $(LOCAL_PATH)/libra_mac/Android.mk
 
     include $(subdir_makefiles)
 endif
