@@ -4,9 +4,9 @@ LOCAL_PATH := $(call my-dir)
 
 ifeq ($(WIFI_LIBRA_MAC),true)
 include $(CLEAR_VARS)
-LOCAL_SRC_FILES := wifi_addr.c
-LOCAL_MODULE:= wifi_addr
-LOCAL_SHARED_LIBRARIES := libcutils libc libstdc++ libutils libbinder libhwrpc libnetutils
+LOCAL_SRC_FILES := libra_mac.c
+LOCAL_MODULE:= libra_mac
+LOCAL_SHARED_LIBRARIES := libcutils libc libstdc++ libutils libhwrpc
 LOCAL_MODULE_TAGS := eng
 include $(BUILD_EXECUTABLE)
 endif
