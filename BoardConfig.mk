@@ -90,7 +90,7 @@ BOARD_WLAN_DEVICE := libra
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/librasdioif.ko"
 WIFI_DRIVER_MODULE_NAME := "libra"
 WIFI_EXT_MODULE_NAME := "librasdioif"
-WIFI_FIRMWARE_LOADER := qcom-wifi
+WIFI_FIRMWARE_LOADER := load_libra
 WIFI_LIBRA_MAC := true
 
 # SDCard
