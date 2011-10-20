@@ -27,9 +27,8 @@
 
 extern "C" {
 #include <linux/msm_audio.h>
-#include <linux/msm_audio_qcp.h>
 #include <linux/msm_audio_aac.h>
-#include <linux/msm_audio_amrnb.h>
+#include "msm_audio_amrnb.h"
 }
 
 namespace android {
