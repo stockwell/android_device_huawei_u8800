@@ -23,10 +23,10 @@ void getmac(char *mac_param)
     int  y;
 
     memset(x,0,8);
-	y=0;
-	huawei_oem_rapi_streaming_function(3,0,0,0,0,&y,x);
+    y=0;
+    huawei_oem_rapi_streaming_function(3,0,0,0,0,&y,x);
     LOGI("huawei_oem_rapi_streaming_function %p %x %x",x,x[0],y);
-	sprintf(mac_param,"mac_param=%02X:%02X:%02X:%02X:%02X:%02X ",x[5],x[4],x[3],x[2],x[1],x[0]);
+    sprintf(mac_param,"mac_param=%02X:%02X:%02X:%02X:%02X:%02X ",x[5],x[4],x[3],x[2],x[1],x[0]);
     LOGI("Got MAC Address: %s ",mac_param);
 }
 
