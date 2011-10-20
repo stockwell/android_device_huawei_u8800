@@ -52,7 +52,7 @@ PRODUCT_PACKAGES += \
 
 # Firmware
 PRODUCT_COPY_FILES += \
-    device/huawei/u8800/system/etc/firmware/vidc_720p_command_control.fw:/system/etc/firmware/vidc_720p_command_control.fw \
+    device/huawei/u8800/firmware/vidc_720p_command_control.fw:/system/etc/firmware/vidc_720p_command_control.fw \
     device/huawei/u8800/firmware/vidc_720p_h263_dec_mc.fw:/system/etc/firmware/vidc_720p_h263_dec_mc.fw \
     device/huawei/u8800/firmware/vidc_720p_h264_dec_mc.fw:/system/etc/firmware/vidc_720p_h264_dec_mc.fw \
     device/huawei/u8800/firmware/vidc_720p_h264_enc_mc.fw:/system/etc/firmware/vidc_720p_h264_enc_mc.fw \
@@ -91,7 +91,6 @@ PRODUCT_COPY_FILES += \
 
 # Vold
 PRODUCT_COPY_FILES += \
-    device/huawei/u8800/prebuilt/vold:/system/bin/vold \
     device/huawei/u8800/vold.fstab:/system/etc/vold.fstab
 
 #ril

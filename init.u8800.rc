@@ -177,7 +177,7 @@ service qcom-wifi /system/bin/sh /system/etc/init.qcom.wifi.sh
     disabled
     oneshot
 
-service load_libra /system/bin/sh /system/etc/load_libra.sh
+service load_libra /system/bin/load_libra
     disabled
     oneshot
 
@@ -189,13 +189,6 @@ service hostapd /system/bin/hostapd -dddd /data/hostapd/hostapd.conf
     group root
     disabled
     oneshot
-
-service libra_mac /system/bin/libra_mac
-    disabled
-    oneshot
-
-on property:init.svc.bootanim=running
-    start libra_mac
 
 on property:dev.bootdone=1
     start qcom-post-boot

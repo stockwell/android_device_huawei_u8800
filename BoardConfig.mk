@@ -91,22 +91,23 @@ WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/librasdioif.ko"
 WIFI_DRIVER_MODULE_NAME := "libra"
 WIFI_EXT_MODULE_NAME := "librasdioif"
 WIFI_FIRMWARE_LOADER := load_libra
-WIFI_LIBRA_MAC := true
+WIFI_LIBRA := true
 
 # SDCard
 BOARD_USE_USB_MASS_STORAGE_SWITCH := true
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun
 BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
+BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk1p1
+BOARD_SDCARD_DEVICE_SECONDARY := /dev/block/mmcblk1p2
+BOARD_SDCARD_DEVICE_INTERNAL := /dev/block/mmcblk0p14
+BOARD_SDEXT_DEVICE := /dev/block/mmcblk1p2
+BOARD_HAS_SDCARD_INTERNAL := true
+VOLD_MAX_PARTITIONS := 20
 
 # Filesystem
 BOARD_DATA_DEVICE := /dev/block/mmcblk0p13
 BOARD_DATA_FILESYSTEM := ext3
 BOARD_CACHE_DEVICE := /dev/block/mmcblk0p6
 BOARD_CACHE_FILESYSTEM := ext3
-BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk1p1
-BOARD_SDCARD_DEVICE_SECONDARY := /dev/block/mmcblk1p2
-BOARD_SDCARD_DEVICE_INTERNAL := /dev/block/mmcblk0p14
-BOARD_SDEXT_DEVICE := /dev/block/mmcblk1p2
 BOARD_SYSTEM_FILESYSTEM := ext3
 BOARD_SYSTEM_DEVICE := /dev/block/mmcblk0p12
 BOARD_HAS_NO_MISC_PARTITION := true
