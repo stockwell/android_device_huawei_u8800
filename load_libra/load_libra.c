@@ -1,21 +1,20 @@
 #include <stdlib.h>
-#include <string.h>
 #include <fcntl.h>
 #include <errno.h>
-#include <sys/ioctl.h>
-#define LOG_TAG "LibraLoader"
-#include "cutils/log.h"
-#include "cutils/properties.h"
+#include <string.h>
 
+#define LOG_TAG "LoadLibra"
+#include "cutils/log.h"
+#include "cutils/misc.h"
+#include "cutils/properties.h"
 
 #define WIFI_DRIVER_LOADER_DELAY	1000000
 
 static const char DRIVER_MODULE_PATH[]  = "/system/lib/modules/libra.ko";
 
-extern void huawei_oem_rapi_streaming_function(int n, int p1, int p2, int p3, int *v1, int *v2, char *v3);
+extern void huawei_oem_rapi_streaming_function(int n, int p1, int p2, int p3, int *v1, int *v2, int *v3);
 extern int init_module(void *, unsigned long, const char *);
 extern int delete_module(const char *, unsigned int);
-extern int load_file(const char *, unsigned int *);
 
 void getmac(char *mac_param)
 {
@@ -101,6 +100,7 @@ int main(void)
         usleep(WIFI_DRIVER_LOADER_DELAY);
         property_set("wlan.driver.status", "ok");       
     }
+
     write_int("/sys/devices/platform/msm_sdcc.3/polling", 0);
 
     return 0;
