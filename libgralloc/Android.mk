@@ -32,7 +32,7 @@ LOCAL_SRC_FILES :=  \
     mapper.cpp      \
     pmemalloc.cpp
 
-LOCAL_MODULE := gralloc.$(TARGET_BOARD_PLATFORM)
+LOCAL_MODULE := gralloc.$(TARGET_BOOTLOADER_BOARD_NAME)
 LOCAL_CFLAGS:= -DLOG_TAG=\"$(TARGET_BOARD_PLATFORM).gralloc\"
 
 #ifeq ($(BOARD_USE_QCOM_PMEM),true)
@@ -40,18 +40,5 @@ LOCAL_CFLAGS:= -DLOG_TAG=\"$(TARGET_BOARD_PLATFORM).gralloc\"
 #endif
 
 include $(BUILD_SHARED_LIBRARY)
-
-# Build a host library for testing
-ifeq ($(HOST_OS),linux)
-include $(CLEAR_VARS)
-LOCAL_SRC_FILES :=      \
-    gpu.cpp             \
-    pmemalloc.cpp
-
-LOCAL_MODULE_TAGS := tests
-LOCAL_MODULE := libgralloc_qsd8k_host
-LOCAL_CFLAGS:= -DLOG_TAG=\"gralloc-qsd8k\"
-include $(BUILD_HOST_STATIC_LIBRARY)
-endif
 
 endif #TARGET_BOOTLOADER_BOARD_NAME
