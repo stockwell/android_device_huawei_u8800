@@ -18,27 +18,27 @@ extern int delete_module(const char *, unsigned int);
 
 void getmac(char *mac_param)
 {
-    char x[8];
-    int  y;
+    char x[6];
+    int y;
 
-    memset(x,0,8);
-    y=0;
+    memset(x,0,6);
+    y=0;    
     huawei_oem_rapi_streaming_function(3,0,0,0,0,&y,x);
-    LOGI("huawei_oem_rapi_streaming_function %p %x %x",x,x[0],y);
-    sprintf(mac_param,"mac_param=%02X:%02X:%02X:%02X:%02X:%02X ",x[5],x[4],x[3],x[2],x[1],x[0]);
+    LOGI("huawei_oem_rapi_streaming_function %p %x %x",x,x[1],y);
+    sprintf(mac_param,"mac_param=%02X:%02X:%02X:%02X:%02X:%02X",x[5],x[4],x[3],x[2],x[1],x[0]);
     LOGI("Got MAC Address: %s ",mac_param);
 }
 
-static int insmod(const char *filename, const char *args)
+static int insmod(const char *filename, char *args)
 {
     void *module;
     unsigned int size;
     int ret;
-
+    LOGI("Loading module");
     module = load_file(filename, &size);
     if (!module)
         return -1;
-
+    LOGI("Init module");
     ret = init_module(module, size, args);
 
     free(module);
@@ -88,12 +88,12 @@ static int write_int(char const* path, int value)
 
 int main(void)
 {
-    char mac_param[64];
+    char mac_param[128];
 
     write_int("/sys/devices/platform/msm_sdcc.3/polling", 1);
     
     getmac(mac_param);
-
+    LOGI("Loading Libra.ko");
     if ((insmod(DRIVER_MODULE_PATH, mac_param)) < 0){
         rmmod("librasdioif");
     } else {
